@@ -1,0 +1,7 @@
+{
+    "env": {
+        "codeCoverage": {
+            "url": "/api/__coverage__"
+        }
+    }
+}
