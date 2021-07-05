@@ -1,3 +1,11 @@
+:root {
+  --color1: #5E8E89;
+  --color2: #B68C9B;
+  --color3: #D9B0C1;
+  --color4: #C33B39;
+  --color5: #49252A;
+}
+
 html,
 body {
   padding: 0;
