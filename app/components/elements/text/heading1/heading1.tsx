@@ -1,4 +1,5 @@
 import React from 'react';
+import MUITypography from '@material-ui/core/Typography';
 
 interface Props {
     children: string,
@@ -9,7 +10,7 @@ const Heading1: React.FunctionComponent<Props> = (props) => {
 
     return (
         <>
-            <h1>{children}</h1>
+            <MUITypography component="h1" variant="h2">{children}</MUITypography>
         </>
     );
 }

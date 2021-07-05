@@ -1,14 +1,21 @@
-interface TextFieldProps {
+import React from 'react';
+import MUITextField from '@material-ui/core/TextField';
+
+interface Props {
+    label: string;
     helperText?: string;
 }
 
-export default function TextField(props: TextFieldProps) {
-    const { helperText } = props;
-
+const TextField: React.FunctionComponent<Props> = 
+    ({ helperText, label }) => {
     return (
         <>
-            <input type="text" />
-            {helperText && <div>{helperText}</div>}
+            <MUITextField 
+                label={label}
+                helperText={helperText} 
+            />
         </>
     );
 }
+
+export default TextField;
