@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import { mount } from '@cypress/react'
-import PlatformSelector from '../../app/components/elements/platformSelector/PlatformSelector'
+import PlatformSelector from '../../app/components/modules/platformSelector/PlatformSelector'
 
 describe('<PlatformSelector />', () => {
   beforeEach(() => {

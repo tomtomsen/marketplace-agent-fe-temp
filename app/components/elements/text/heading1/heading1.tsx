@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface Header1Props {
+interface Props {
     children: string,
 };
 
-const Header1: React.FunctionComponent<Header1Props> = (props) => {
+const Heading1: React.FunctionComponent<Props> = (props) => {
     const { children } = props;
 
     return (
@@ -14,4 +14,4 @@ const Header1: React.FunctionComponent<Header1Props> = (props) => {
     );
 }
 
-export default Header1;
+export default Heading1;

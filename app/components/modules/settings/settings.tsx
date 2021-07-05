@@ -1,5 +1,5 @@
 import React from 'react';
-import Header1 from '../header1/header1';
+import Header1 from '../../elements/text/heading1/heading1';
 import styles from './settings.module.css';
 
 const Settings: React.FunctionComponent = () => {

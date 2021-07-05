@@ -1,4 +1,4 @@
-import Header1 from '../header1/header1';
+import Header1 from '../../elements/text/heading1/heading1';
 import styles from './queries.module.css';
 
 const Queries = () => {

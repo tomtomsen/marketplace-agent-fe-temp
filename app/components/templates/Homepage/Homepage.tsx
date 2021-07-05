@@ -1,6 +1,6 @@
 import React from 'react';
-import Queries from '../../elements/queries/queries';
-import Settings from '../../elements/settings/settings';
+import Queries from '../../modules/queries/queries';
+import Settings from '../../modules/settings/settings';
 
 const Homepage: React.FunctionComponent = () => {
     return (
