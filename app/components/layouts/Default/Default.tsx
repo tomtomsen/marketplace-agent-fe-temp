@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from '../../modules/footer/footer';
+import GlobalError from '../../modules/globalError/globalError';
 import Header from '../../modules/header/header';
 
 interface Props {

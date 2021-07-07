@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "npx --no-install cypress open-ct"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",

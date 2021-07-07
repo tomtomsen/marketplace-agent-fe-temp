@@ -3,15 +3,22 @@ import Button from '../../elements/button/Button';
 import Header1 from '../../elements/text/heading1/heading1';
 import TextField from '../../elements/textField/TextField';
 import styles from './queries.module.css';
+import useError from '../globalError/globalError.provider';
 
 const Queries: React.FunctionComponent<{}> = () => {
+    const { setError } = useError();
+
+    const onClick = () => {
+        setError('Fehler 101');
+    };
+
     return (
         <>
             <div className={styles.root}>
                 <Header1>Suchen</Header1>
                 <div>
                     <TextField label="Suchbegriff" helperText={"zB: Auto, Lupe, ..."} />
-                    <Button>Speichern</Button>
+                    <Button onClick={onClick}>Speichern</Button>
                 </div>
             </div>
         </>
