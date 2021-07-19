@@ -1,13 +1,11 @@
 import styles from './footer.module.css';
 
-const Footer = () => {
-    return (
-        <>
-            <footer className={styles.root}>
+const Footer = () => (
+  <>
+    <footer className={styles.root}>
                 written by tomtomsen
-            </footer>
-        </>
-    );
-}
+    </footer>
+  </>
+);
 
 export default Footer;
