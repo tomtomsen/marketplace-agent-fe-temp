@@ -6,13 +6,13 @@ interface Props {
     helperText?: string;
 }
 
-const TextField: React.FunctionComponent<Props> = 
+const TextField: React.FunctionComponent<Props> =
     ({ helperText, label }) => {
     return (
         <>
-            <MUITextField 
+            <MUITextField
                 label={label}
-                helperText={helperText} 
+                helperText={helperText}
             />
         </>
     );

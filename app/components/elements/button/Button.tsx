@@ -6,7 +6,7 @@ interface Props {
     onClick?: () => void;
 }
 
-const Button: React.FunctionComponent<Props> = 
+const Button: React.FunctionComponent<Props> =
     ({ children, onClick }) => (
         <MUIButton variant="contained" color="primary" onClick={onClick}>{children}</MUIButton>
     );

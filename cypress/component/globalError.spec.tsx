@@ -33,7 +33,7 @@ describe('<GlobalError />', () => {
                 <MyButton onClick={() => errorMsg} />
             </ErrorProvider>
         ));
-        
+
         cy.get('#button').click();
         cy.get('[data-testid="global-error"]').isInViewport();
         cy.get('[data-testid="global-error"]').should('contain', errorMsg);

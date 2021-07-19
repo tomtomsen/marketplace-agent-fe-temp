@@ -18,9 +18,9 @@ async function getNextWebpackConfig (config) {
             rewrites: { fallback: [], afterFiles: [], beforeFiles: [] },
         },
     )
-    
+
     debug('resolved next.js webpack config %o', nextWebpackConfig)
-    
+
     return nextWebpackConfig
 }
 
@@ -32,9 +32,9 @@ module.exports = async function findNextWebpackConfig (config) {
     if (webpackConfigCache !== null) {
         // return webpackConfigCache
     }
-    
+
     webpackConfigCache = await getNextWebpackConfig(config)
     debug('created and cached webpack preprocessor based on next.config.js', webpackConfigCache)
-    
+
     return webpackConfigCache
 }

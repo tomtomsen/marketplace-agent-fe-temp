@@ -20,7 +20,7 @@ const SlideTransition = (props: SlideProps) => {
     return <Slide {...props} direction="up" />;
 }
 
-const GlobalError: React.FunctionComponent<GlobalErrorProps> = 
+const GlobalError: React.FunctionComponent<GlobalErrorProps> =
     ({type, message, children}) => {
     const [open, setOpen] = React.useState(true);
     React.useEffect(() => {
@@ -48,12 +48,12 @@ const GlobalError: React.FunctionComponent<GlobalErrorProps> =
     }
 
     return (
-        <MUISnackbar 
+        <MUISnackbar
             data-testid="global-error"
             open={open}
             onClose={handleClose}
-            autoHideDuration={6000} 
-            message={message} 
+            autoHideDuration={6000}
+            message={message}
             TransitionComponent={SlideTransition}
             action={
               <React.Fragment>

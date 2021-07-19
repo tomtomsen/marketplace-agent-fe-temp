@@ -5,9 +5,9 @@ import TextField from '../../app/components/elements/textField/TextField'
 describe('<TextField />', () => {
     it('renders help text', () => {
         const helperText = "my helper text";
-        
+
         mount(<TextField label="Hello" helperText={helperText}/>)
-        
+
         cy.get('div').should('contain', helperText);
     });
 
