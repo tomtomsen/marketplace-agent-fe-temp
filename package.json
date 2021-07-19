@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress:open": "npx --no-install cypress open-ct"
+    "cypress:open": "npx --no-install cypress open-ct",
+    "lint:editorconfig": "npx --no-install ec .",
+    "prepare": "husky install",
+    "pre-commit": "npm run lint:editorconfig"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
@@ -26,6 +29,7 @@
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
     "html-webpack-plugin": "^5.3.2",
+    "husky": "^7.0.1",
     "typescript": "4.3.4",
     "webpack-dev-server": "^3.11.2"
   },
