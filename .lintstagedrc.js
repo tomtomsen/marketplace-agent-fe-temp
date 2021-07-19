@@ -7,6 +7,9 @@ module.exports = {
     'npm install --package-lock-only',
     'git add package-lock.json'
   ],
+  '**/{.eslintrc,cypress,.npmpackagejsonlintrc,tsconfig,package}.json': [
+    'npx --no-install v8r'
+  ],
   '**/*.ts': (fileNames) => [
     fileNames.length > 10
     ? 'npx --no-install next lint --fix --ext ts --ext tsx'
