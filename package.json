@@ -2,15 +2,15 @@
   "name": "willhaben-agent",
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint --dir . --ext .ts --ext .tsx",
     "cypress:open": "npx --no-install cypress open-ct",
+    "dev": "next dev",
+    "lint": "next lint --dir . --ext .ts --ext .tsx",
     "lint:editorconfig": "npx --no-install ec .",
     "lint:package.json": "npmPkgJsonLint -c .npmpackagejsonlintrc.json .",
+    "pre-commit": "npm-run-all -l -p lint lint:editorconfig lint:package.json",
     "prepare": "husky install",
-    "pre-commit": "npm-run-all -l -p lint lint:editorconfig lint:package.json"
+    "start": "next start"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",

@@ -4,6 +4,7 @@
     "prefer-property-order": ["error", []],
     "prefer-alphabetical-dependencies": "error",
     "prefer-alphabetical-devDependencies": "error",
+    "prefer-alphabetical-scripts": "error",
     "description-format": [
       "error",
       {
