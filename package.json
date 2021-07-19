@@ -7,7 +7,7 @@
     "dev": "next dev",
     "lint": "next lint --dir . --ext .ts --ext .tsx",
     "lint:editorconfig": "npx --no-install ec .",
-    "lint:package.json": "npmPkgJsonLint -c .npmpackagejsonlintrc.json .",
+    "lint:package.json": "npmPkgJsonLint --configFile .npmpackagejsonlintrc.json .",
     "pre-commit": "lint-staged",
     "prepare": "husky install",
     "start": "next start"
