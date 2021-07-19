@@ -1,8 +1,10 @@
 import React from 'react';
-// import MUIAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
+import MUIAlert from '@material-ui/lab/Alert';
 import MUISnackbar from '@material-ui/core/Snackbar';
-import Slide, { SlideProps } from '@material-ui/core/Slide';
+import MUICloseIcon from '@material-ui/icons/Close';
 import MUIIconButton from '@material-ui/core/IconButton';
+import Slide, { SlideProps } from '@material-ui/core/Slide';
 
 export type ErrorType = 'error' | 'warning' | 'success';
 
@@ -15,8 +17,15 @@ type GlobalErrorProps = ErrorProps;
 
 const SlideTransition = (props: SlideProps) => <Slide {...props} direction="up" />;
 
-const GlobalError: React.FunctionComponent<GlobalErrorProps> = ({ message }) => {
+const useStyles = makeStyles((theme) => ({
+  close: {
+    padding: theme.spacing(0.5),
+  },
+}));
+
+const GlobalError: React.FunctionComponent<GlobalErrorProps> = ({ message, type }) => {
   const [open, setOpen] = React.useState(true);
+  const classes = useStyles();
   React.useEffect(() => {
     setOpen(!!message);
   }, [message]);
@@ -29,26 +38,33 @@ const GlobalError: React.FunctionComponent<GlobalErrorProps> = ({ message }) => 
     setOpen(false);
   };
 
-  const handleClick = () => {
-    setOpen(false);
-  };
-
   return (
     <MUISnackbar
       data-testid="global-error"
       open={open}
       onClose={handleClose}
       autoHideDuration={6000}
-      message={message}
       TransitionComponent={SlideTransition}
-      action={
-        <React.Fragment>
-          <MUIIconButton size="small" aria-label="close" color="inherit" onClick={handleClick} data-testid="global-error-close">
-                  x
+    >
+      <MUIAlert
+        variant="filled"
+        onClose={handleClose}
+        severity={type}
+        action={
+          <MUIIconButton
+            data-testid="global-error-close"
+            aria-label="close"
+            color="inherit"
+            className={classes.close}
+            onClick={handleClose}
+          >
+            <MUICloseIcon />
           </MUIIconButton>
-        </React.Fragment>
-      }
-    />
+        }
+      >
+        {message}
+      </MUIAlert>
+    </MUISnackbar>
   );
 };
 

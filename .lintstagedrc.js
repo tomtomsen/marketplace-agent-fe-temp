@@ -12,7 +12,7 @@ module.exports = {
   ],
   '**/*.ts': (fileNames) => [
     fileNames.length > 10
-    ? 'npx --no-install next lint --fix --ext ts --ext tsx'
-    : `npx --no-install next lint --fix --ext ts --ext tsx ${fileNames.join(' ')}`,
+    ? 'npx --no-install eslint --fix --ext .ts,.tsx'
+    : `npx --no-install eslint --fix --ext .ts,.tsx ${fileNames.join(' ')}`,
   ]
 };

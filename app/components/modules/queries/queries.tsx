@@ -1,26 +1,41 @@
 import React from 'react';
-import Button from '../../elements/button/Button';
 import Header1 from '../../elements/text/heading1/heading1';
-import TextField from '../../elements/textField/TextField';
-import styles from './queries.module.css';
-import useError from '../globalError/globalError.provider';
+import { useUser } from '../../../context/User/UserProvider';
+import QueryInput from '../QueryInput/QueryInput';
+import QueryInputSkeleton from '../QueryInput/QueryInputSkeleton';
 
 const Queries: React.FunctionComponent<Record<string, unknown>> = () => {
-  const { setError } = useError();
+  const [userState] = useUser();
+  const {
+    loading,
+    error,
+    user,
+  } = userState;
 
-  const onClick = () => {
-    setError({ message: 'Fehler 101' });
-  };
+  if (loading || error) {
+    return (
+      <>
+        <QueryInputSkeleton />
+        <QueryInputSkeleton />
+        <QueryInputSkeleton />
+      </>
+    );
+  }
+
+  if (!user.queries) {
+    return (
+      <><div>xxx</div></>
+    );
+  }
+
+  const output = user.queries.map((query: any) => (
+    <QueryInput key={query.id} query={query} />
+  ));
 
   return (
     <>
-      <div className={styles.root}>
-        <Header1>Suchen</Header1>
-        <div>
-          <TextField label="Suchbegriff" helperText={'zB: Auto, Lupe, ...'} />
-          <Button onClick={onClick}>Speichern</Button>
-        </div>
-      </div>
+      <Header1>Suchen</Header1>
+      {output}
     </>
   );
 };
