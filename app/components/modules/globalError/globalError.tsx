@@ -5,12 +5,16 @@ import MUISnackbar from '@material-ui/core/Snackbar';
 import Slide, { SlideProps } from '@material-ui/core/Slide';
 import MUIIconButton from '@material-ui/core/IconButton';
 
-interface GlobalErrorProps {
-    type?: 'error' | 'warning' | 'success';
-    children?: string;
-    message?: string;
+export type ErrorType = 'error' | 'warning' | 'success';
+
+export interface ErrorProps {
+  type?: ErrorType;
+  message?: string;
 }
 
+interface GlobalErrorProps extends ErrorProps {
+    children?: string;
+}
 
 const SlideTransition = (props: SlideProps) => {
     return <Slide {...props} direction="up" />;
@@ -19,6 +23,9 @@ const SlideTransition = (props: SlideProps) => {
 const GlobalError: React.FunctionComponent<GlobalErrorProps> = 
     ({type, message, children}) => {
     const [open, setOpen] = React.useState(true);
+    React.useEffect(() => {
+      setOpen(!!message);
+    }, [message]);
 
     if (!type) {
         type = 'error';
@@ -33,28 +40,24 @@ const GlobalError: React.FunctionComponent<GlobalErrorProps> =
     }
 
     const handleClose = (event: any, reason: any) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-  
       setOpen(false);
     };
 
     const handleClick = () => {
-        setOpen(false);
+      setOpen(false);
     }
 
     return (
         <MUISnackbar 
             data-testid="global-error"
-            open={open} 
+            open={open}
             onClose={handleClose}
             autoHideDuration={6000} 
             message={message} 
             TransitionComponent={SlideTransition}
             action={
               <React.Fragment>
-                <MUIIconButton size="small" aria-label="close" color="inherit" onClick={handleClick}>
+                <MUIIconButton size="small" aria-label="close" color="inherit" onClick={handleClick} data-testid="global-error-close">
                   x
                 </MUIIconButton>
               </React.Fragment>
