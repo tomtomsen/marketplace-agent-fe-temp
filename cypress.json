@@ -1,7 +1,9 @@
 {
-    "env": {
-        "codeCoverage": {
-            "url": "/api/__coverage__"
-        }
+  "testFiles": "**/*.spec.{ts,tsx}",
+  "componentFolder": "app/components",
+  "env": {
+    "codeCoverage": {
+      "url": "/api/__coverage__"
     }
+  }
 }

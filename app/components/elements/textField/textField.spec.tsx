@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import { mount } from '@cypress/react';
-import TextField from '../../app/components/elements/textField/TextField';
+import TextField from './TextField';
 
 describe('<TextField />', () => {
   it('renders help text', () => {

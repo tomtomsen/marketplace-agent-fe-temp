@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "scripts": {
     "build": "next build",
-    "cypress:open": "npx --no-install cypress open-ct",
+    "cypress:open": "cypress open-ct",
+    "cypress:run": "cypress run-ct",
     "dev": "next dev",
     "lint": "next lint --dir . --ext .ts --ext .tsx",
-    "lint:editorconfig": "npx --no-install ec .",
+    "lint:editorconfig": "ec .",
     "lint:package.json": "npmPkgJsonLint --configFile .npmpackagejsonlintrc.json .",
     "lint:yaml": "v8r *.ya?ml",
     "pre-commit": "lint-staged",

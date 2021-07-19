@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import { mount } from '@cypress/react';
-import useError, { ErrorProvider } from '../../app/components/modules/globalError/globalError.provider';
+import useError, { ErrorProvider } from './globalError.provider';
 
 const MyButton = ({ onClick }: { onClick: () => string }) => {
   const { setError } = useError();

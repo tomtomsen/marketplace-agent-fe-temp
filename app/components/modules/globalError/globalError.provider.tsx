@@ -21,7 +21,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const ErrorProvider = ({ children }: Props): React.ReactNode => {
+export const ErrorProvider = ({ children }: Props): any => {
   const [error, setError] = React.useState({ error: '', type: 'error' } as ErrorProps);
 
   return (
