@@ -7,11 +7,11 @@ export const useUser = () => {
   return [state, dispatch];
 };
 
-type Props = {
+type Properties = {
   children: React.ReactChild | Array<React.ReactChild>;
 };
 
-const UserProvider: React.FunctionComponent<Props> = ({ children }) => {
+const UserProvider: React.FunctionComponent<Properties> = ({ children }) => {
   const [state, dispatch] = React.useReducer(UserReducer, initialState);
 
   return (

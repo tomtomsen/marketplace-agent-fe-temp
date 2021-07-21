@@ -1,10 +1,10 @@
 import React from 'react';
 
-type Props = {
+type Properties = {
   children: React.ReactNode | Array<React.ReactNode>
 };
 
-const Content: React.FunctionComponent<Props> = ({ children }) => (
+const Content: React.FunctionComponent<Properties> = ({ children }) => (
   <>
     <div data-testid="content">
       {children}

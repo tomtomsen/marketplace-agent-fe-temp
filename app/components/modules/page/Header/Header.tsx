@@ -3,9 +3,9 @@ import Image from 'next/image';
 import styles from './Header.module.css';
 import logo from './logo.svg';
 
-type Props = unknown;
+type Properties = unknown;
 
-const Header: React.FunctionComponent<Props> = () => (
+const Header: React.FunctionComponent<Properties> = () => (
   <>
     <header className={styles.root}>
       <Image src={logo} className={styles.logo} height={'100vmin'} alt="logo" />

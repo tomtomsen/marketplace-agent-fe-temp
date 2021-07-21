@@ -17,11 +17,11 @@ interface ErrorContext {
 }
 const [useError, CtxProvider] = createCtx<ErrorContext>();
 
-type Props = {
+type Properties = {
   children: React.ReactNode;
 };
 
-export const ErrorProvider = ({ children }: Props): any => {
+export const ErrorProvider = ({ children }: Properties): any => {
   const [error, setError] = React.useState({ error: '', type: 'error' } as ErrorProps);
 
   return (

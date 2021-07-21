@@ -1,9 +1,9 @@
 import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-type Props = unknown;
+type Properties = unknown;
 
-const QueryInputSkeleton: React.FunctionComponent<Props> = () => (
+const QueryInputSkeleton: React.FunctionComponent<Properties> = () => (
   <>
     <Skeleton variant="text" />
     <Skeleton variant="circle" width={40} height={40} />

@@ -3,9 +3,9 @@ import TextField from '../../elements/TextField/TextField';
 import Header1 from '../../elements/Typography/Heading1/Heading1';
 import styles from './Settings.module.css';
 
-type Props = unknown;
+type Properties = unknown;
 
-const Settings: React.FunctionComponent<Props> = () => (
+const Settings: React.FunctionComponent<Properties> = () => (
   <>
     <div className={styles.root}>
       <Header1>Einstellungen</Header1>

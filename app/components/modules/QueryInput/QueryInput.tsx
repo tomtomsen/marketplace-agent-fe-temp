@@ -12,7 +12,7 @@ type TQuery = {
   query: string,
 };
 
-interface Props {
+interface Properties {
   query: TQuery,
   onRemoved: () => void;
 }
@@ -32,7 +32,7 @@ function SomeComponent() {
   );
 }
 
-const QueryInput: React.FunctionComponent<Props> = ({ onRemoved, query }) => {
+const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) => {
   const [value, setValue] = React.useState(query.query);
   const [saving, setSaving] = React.useState<boolean>(false);
   const [deleting, setDeleting] = React.useState<boolean>(false);

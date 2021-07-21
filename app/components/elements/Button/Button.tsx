@@ -1,13 +1,13 @@
 import React from 'react';
 import MUIButton from '@material-ui/core/Button';
 
-interface Props {
+interface Properties {
   children: React.ReactNode | string;
   disabled?: boolean;
   onClick?: () => void;
 }
 
-const Button: React.FunctionComponent<Props> = ({ children, disabled, onClick }) => (
+const Button: React.FunctionComponent<Properties> = ({ children, disabled, onClick }) => (
   <MUIButton
     variant="contained"
     color="primary"

@@ -6,11 +6,11 @@ type TQuery = {
   query: string;
 };
 
-type Props = {
+type Properties = {
   queries: Array<TQuery>;
 };
 
-const QueryInputList: React.FunctionComponent<Props> = ({ queries }) => {
+const QueryInputList: React.FunctionComponent<Properties> = ({ queries }) => {
   const [items, setItems] = React.useState(queries);
 
   const handleRemoved = (query: TQuery) => {

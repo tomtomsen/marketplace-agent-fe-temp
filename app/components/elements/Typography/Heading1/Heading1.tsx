@@ -1,11 +1,11 @@
 import React from 'react';
 import MUITypography from '@material-ui/core/Typography';
 
-interface Props {
+interface Properties {
   children: string,
 }
 
-const Heading1: React.FunctionComponent<Props> = (props) => {
+const Heading1: React.FunctionComponent<Properties> = (props) => {
   const { children } = props;
 
   return (

@@ -1,14 +1,14 @@
 import React, { ChangeEventHandler } from 'react';
 import MUITextField from '@material-ui/core/TextField';
 
-interface Props {
+interface Properties {
   label: string;
   helperText?: string;
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
   defaultValue?: string;
 }
 
-const TextField: React.FunctionComponent<Props> = ({
+const TextField: React.FunctionComponent<Properties> = ({
   helperText,
   label,
   onChange,

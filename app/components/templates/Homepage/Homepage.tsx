@@ -4,9 +4,9 @@ import Settings from '../../modules/Settings/Settings';
 import { useUser } from '../../../context/User/UserProvider';
 import { getUser } from '../../../context/User/UserAction';
 
-type Props = unknown;
+type Properties = unknown;
 
-const Homepage: React.FunctionComponent<Props> = () => {
+const Homepage: React.FunctionComponent<Properties> = () => {
   const [userState, userDispatch] = useUser();
   const {
     loading,
