@@ -13,11 +13,9 @@ const Homepage: React.FunctionComponent<Properties> = () => {
   } = userState;
 
   React.useEffect(() => {
-    const getUserInfoHandler = async () => {
+    (async () => {
       await getUser(userDispatch);
-    };
-
-    getUserInfoHandler();
+    })();
   }, [userDispatch]);
 
   const children = (
