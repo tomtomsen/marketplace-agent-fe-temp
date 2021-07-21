@@ -6,16 +6,16 @@ import MUICloseIcon from '@material-ui/icons/Close';
 import MUIIconButton from '@material-ui/core/IconButton';
 import Slide, { SlideProps } from '@material-ui/core/Slide';
 
-export type ErrorType = 'error' | 'warning' | 'success';
+export type ErrorType = 'error' | 'warning' | 'success' | 'info';
 
-export interface ErrorProps {
+export interface ErrorProperties {
   type?: ErrorType;
   message?: string;
 }
 
-type GlobalErrorProps = ErrorProps;
+type GlobalErrorProperties = ErrorProperties;
 
-const SlideTransition = (props: SlideProps) => <Slide {...props} direction="up" />;
+const SlideTransition = (properties: SlideProps) => <Slide {...properties} direction="up" />;
 
 const useStyles = makeStyles((theme) => ({
   close: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GlobalError: React.FunctionComponent<GlobalErrorProps> = ({ message, type }) => {
+const GlobalError: React.FunctionComponent<GlobalErrorProperties> = ({ message, type }) => {
   const [open, setOpen] = React.useState(true);
   const classes = useStyles();
   React.useEffect(() => {
@@ -31,7 +31,7 @@ const GlobalError: React.FunctionComponent<GlobalErrorProps> = ({ message, type 
   }, [message]);
 
   if (!message) {
-    return null;
+    return (<></>);
   }
 
   const handleClose = () => {

@@ -1,12 +1,12 @@
 /// <reference types="cypress" />
 import { mount } from '@cypress/react';
-import useError, { ErrorProvider } from './globalError.provider';
+import GlobalErrorProvider, { useError } from '../../../context/GlobalError/GlobalErrorProvider';
 
 const MyButton = ({ onClick }: { onClick: () => string }) => {
   const { setError } = useError();
 
   const handleClick = () => {
-    setError({ message: onClick() });
+    setError({ message: onClick(), type: 'error' });
   };
 
   return (
@@ -17,50 +17,50 @@ const MyButton = ({ onClick }: { onClick: () => string }) => {
 describe('<GlobalError />', () => {
   it('if not triggered, error should not be visible', () => {
     mount((
-      <ErrorProvider>
+      <GlobalErrorProvider>
         <MyButton onClick={() => 'XXXX'} />
-      </ErrorProvider>
+      </GlobalErrorProvider>
     ));
 
     cy.get('body').find('[data-testid="global-error"]').should('have.length', 0);
   });
 
   it('renders', () => {
-    const errorMsg = 'my random error message';
+    const message = 'my random error message';
 
     mount((
-      <ErrorProvider>
-        <MyButton onClick={() => errorMsg} />
-      </ErrorProvider>
+      <GlobalErrorProvider>
+        <MyButton onClick={() => message} />
+      </GlobalErrorProvider>
     ));
 
     cy.get('#button').click();
     cy.get('[data-testid="global-error"]').isInViewport();
-    cy.get('[data-testid="global-error"]').should('contain', errorMsg);
+    cy.get('[data-testid="global-error"]').should('contain', message);
   });
 
   it('should be visible on long pages', () => {
-    const errorMsg = 'my random error message';
+    const message = 'my random error message';
 
     mount((
-      <ErrorProvider>
+      <GlobalErrorProvider>
         <div id="contentX" style={{ height: '10000px' }} />
-        <MyButton onClick={() => errorMsg} />
-      </ErrorProvider>
+        <MyButton onClick={() => message} />
+      </GlobalErrorProvider>
     ));
 
     cy.get('#button').scrollIntoView();
     cy.get('#button').click();
 
     cy.get('[data-testid="global-error"]').isInViewport();
-    cy.get('[data-testid="global-error"]').should('contain', errorMsg);
+    cy.get('[data-testid="global-error"]').should('contain', message);
   });
 
   it('can be closed', () => {
     mount((
-      <ErrorProvider>
+      <GlobalErrorProvider>
         <MyButton onClick={() => 'some error'} />
-      </ErrorProvider>
+      </GlobalErrorProvider>
     ));
 
     cy.get('#button').click();
@@ -77,10 +77,10 @@ describe('<GlobalError />', () => {
     };
 
     mount((
-      <ErrorProvider>
+      <GlobalErrorProvider>
         <div id="contentX" />
         <MyButton onClick={onClick} />
-      </ErrorProvider>
+      </GlobalErrorProvider>
     ));
 
     cy.get('#button').scrollIntoView();
