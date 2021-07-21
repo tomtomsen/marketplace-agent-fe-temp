@@ -1,10 +1,12 @@
 import React from 'react';
-import Queries from '../../modules/Queries/queries';
-import Settings from '../../modules/settings/Settings';
+import Queries from '../../modules/Queries/Queries';
+import Settings from '../../modules/Settings/Settings';
 import { useUser } from '../../../context/User/UserProvider';
 import { getUser } from '../../../context/User/UserAction';
 
-const Homepage: React.FunctionComponent = () => {
+type Props = unknown;
+
+const Homepage: React.FunctionComponent<Props> = () => {
   const [userState, userDispatch] = useUser();
   const {
     loading,

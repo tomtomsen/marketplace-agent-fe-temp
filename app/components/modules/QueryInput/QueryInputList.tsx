@@ -1,6 +1,5 @@
 import React from 'react';
 import QueryInput from './QueryInput';
-import Button from '../../elements/button/Button';
 
 type TQuery = {
   id: string;
@@ -35,7 +34,6 @@ const QueryInputList: React.FunctionComponent<Props> = ({ queries }) => {
           <QueryInput query={query} onRemoved={() => handleRemoved(query)} />
         </div>
       ))}
-      <Button onClick={handleAdd}>+</Button>
     </>
   );
 };

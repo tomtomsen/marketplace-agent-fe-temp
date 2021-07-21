@@ -1,7 +1,6 @@
 import React from 'react';
-import Header1 from '../../elements/text/heading1/heading1';
+import Header1 from '../../elements/Typography/Heading1/Heading1';
 import { useUser } from '../../../context/User/UserProvider';
-import QueryInput from '../QueryInput/QueryInput';
 import QueryInputSkeleton from '../QueryInput/QueryInputSkeleton';
 import QueryInputList from '../QueryInput/QueryInputList';
 

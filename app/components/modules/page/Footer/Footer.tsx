@@ -1,6 +1,8 @@
-import styles from './footer.module.css';
+import styles from './Footer.module.css';
 
-const Footer = () => (
+type Props = unknown;
+
+const Footer: React.FunctionComponent<Props> = () => (
   <>
     <footer className={styles.root}>
                 written by tomtomsen

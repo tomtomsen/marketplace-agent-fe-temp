@@ -4,8 +4,8 @@ import MUIIconButton from '@material-ui/core/IconButton';
 import { animated } from 'react-spring';
 import UserAPI from '../../../api/UserAPI';
 import { useBoop } from '../../elements/Boop';
-import Button from '../../elements/button/Button';
-import TextField from '../../elements/textField/TextField';
+import Button from '../../elements/Button/Button';
+import TextField from '../../elements/TextField/TextField';
 
 type TQuery = {
   id: string,
