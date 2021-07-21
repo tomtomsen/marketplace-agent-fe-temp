@@ -1,6 +1,6 @@
 import React from 'react';
-import TextField from '../../elements/TextField/TextField';
-import Header1 from '../../elements/Typography/Heading1/Heading1';
+import TextField from '../../../elements/TextField/TextField';
+import Header1 from '../../../elements/Typography/Heading1/Heading1';
 import styles from './Settings.module.css';
 
 type Properties = unknown;
