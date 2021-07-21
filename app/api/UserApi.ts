@@ -1,5 +1,5 @@
 import axios from 'axios';
-import delay from '../tools/Delay';
+import delay from '../tools/delay';
 
 const host = 'https://private-b3485f-tomtomsenmarketplace.apiary-mock.com';
 const defaultHeaders = {
