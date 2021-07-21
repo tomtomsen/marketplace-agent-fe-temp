@@ -70,10 +70,10 @@ describe('<GlobalError />', () => {
   });
 
   it('updates on multiple errors', () => {
-    let i = 0;
+    let index = 0;
     const onClick = () => {
-      i += 1;
-      return `error-count: ${i}`;
+      index += 1;
+      return `error-count: ${index}`;
     };
 
     mount((
