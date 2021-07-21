@@ -6,11 +6,12 @@ const getInitialState = isRenderingOnServer ? true : !window.matchMedia(QUERY).m
 
 const usePrefersReducedMotion = (): boolean => {
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(getInitialState);
+  const listener = (event: MediaQueryListEvent): any => {
+    setPrefersReducedMotion(!event.matches);
+  };
+
   React.useEffect(() => {
     const mediaQueryList = window.matchMedia(QUERY);
-    const listener = (event: MediaQueryListEvent): any => {
-      setPrefersReducedMotion(!event.matches);
-    };
     mediaQueryList.addEventListener<'change'>('change', listener);
     return () => {
       mediaQueryList.removeEventListener<'change'>('change', listener);
