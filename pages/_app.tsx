@@ -1,16 +1,16 @@
 import '../app/styles/globals.css';
 import React from 'react';
 import type { AppProps } from 'next/app';
-import { ErrorProvider } from '../app/components/modules/globalError/globalError.provider';
 import UserProvider from '../app/context/User/UserProvider';
+import GlobalErrorProvider from '../app/context/GlobalError/GlobalErrorProvider';
 
 const MyApp: React.FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
-    <ErrorProvider>
+    <GlobalErrorProvider>
       <UserProvider>
         <Component {...pageProps} />
       </UserProvider>
-    </ErrorProvider>
+    </GlobalErrorProvider>
   </>
 );
 
