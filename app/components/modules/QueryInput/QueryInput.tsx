@@ -2,7 +2,7 @@ import React from 'react';
 import MUICloseIcon from '@material-ui/icons/Close';
 import MUIIconButton from '@material-ui/core/IconButton';
 import { animated } from 'react-spring';
-import UserAPI from '../../../api/UserAPI';
+import UserApi from '../../../api/UserApi';
 import { useBoop } from '../../elements/Boop';
 import Button from '../../elements/Button/Button';
 import TextField from '../../elements/TextField/TextField';
@@ -41,7 +41,7 @@ const QueryInput: React.FunctionComponent<Props> = ({ onRemoved, query }) => {
   const handleRemove = async () => {
     setDeleting(true);
     try {
-      await UserAPI.queries.delete(query.id);
+      await UserApi.queries.delete(query.id);
       onRemoved();
     } catch (e) {
       setError(e.message);
@@ -53,7 +53,7 @@ const QueryInput: React.FunctionComponent<Props> = ({ onRemoved, query }) => {
   const handleUpdate = async () => {
     setSaving(true);
     try {
-      await UserAPI.queries.put(query.id, value);
+      await UserApi.queries.put(query.id, value);
     } catch (e) {
       setError(e.message);
     } finally {

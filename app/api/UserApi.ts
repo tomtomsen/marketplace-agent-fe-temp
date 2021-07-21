@@ -25,7 +25,7 @@ type TGetUserResponse = {
 type TPutQueryResponse = unknown;
 type TDeleteQueryResponse = unknown;
 
-const UserAPI = {
+const UserApi = {
   get: (): Promise<TGetUserResponse> => delay(
     axios
       .get(
@@ -72,4 +72,4 @@ const UserAPI = {
   },
 };
 
-export default UserAPI;
+export default UserApi;

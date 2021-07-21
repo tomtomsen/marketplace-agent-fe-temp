@@ -1,4 +1,4 @@
-import UserAPI from '../../api/UserAPI';
+import UserApi from '../../api/UserApi';
 
 type TDispatch = (x: any) => void;
 type TError = {
@@ -20,7 +20,7 @@ export const getUser = async (dispatch: TDispatch): Promise<void> => {
   setLoading(dispatch, true);
 
   try {
-    const user = await UserAPI.get();
+    const user = await UserApi.get();
 
     dispatch({
       payload: user,
