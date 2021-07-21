@@ -1,3 +1,34 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "cypress",
+    "react-hooks",
+    "promise"
+  ],
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:cypress/recommended",
+    "airbnb-typescript/base",
+    "plugin:promise/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/indent": ["error", 2],
+    "import/no-cycle": "off",
+    "sort-keys": [
+      "error",
+      "asc",
+      { "caseSensitive": true, "natural": false, "minKeys": 2 }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "env": {
+    "cypress/globals": true
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
 }
