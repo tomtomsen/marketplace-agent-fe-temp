@@ -17,16 +17,6 @@ const QueryInputList: React.FunctionComponent<Props> = ({ queries }) => {
     setItems(items.filter((q: TQuery) => q.id !== query.id));
   };
 
-  const handleAdd = () => {
-    setItems([
-      ...items,
-      {
-        id: `xxx-${Math.random()}`,
-        query: '',
-      },
-    ]);
-  };
-
   return (
     <>
       {items.map((query: TQuery) => (

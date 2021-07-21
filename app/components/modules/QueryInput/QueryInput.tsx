@@ -26,7 +26,7 @@ function SomeComponent() {
       color="inherit"
     >
       <animated.span style={style}>
-          <MUICloseIcon />
+        <MUICloseIcon />
       </animated.span>
     </MUIIconButton>
   );
