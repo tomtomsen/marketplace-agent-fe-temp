@@ -12,7 +12,7 @@ export const useBoop = ({
     friction: 10,
     tension: 300,
   },
-}) => {
+}): [React.CSSProperties, () => void] => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [isBooped, setIsBooped] = React.useState(false);
   const style = useSpring({

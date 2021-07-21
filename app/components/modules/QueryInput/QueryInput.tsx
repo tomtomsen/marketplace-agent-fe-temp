@@ -21,7 +21,7 @@ function SomeComponent() {
   const [style, trigger] = useBoop({ rotation: 10 });
   return (
     <MUIIconButton
-      onMouseEnter={trigger}
+      onMouseEnter={() => trigger()}
       aria-label="close"
       color="inherit"
     >
