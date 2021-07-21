@@ -4,7 +4,8 @@
     "@typescript-eslint",
     "cypress",
     "react-hooks",
-    "promise"
+    "promise",
+    "unicorn"
   ],
   "extends": [
     "next",
@@ -12,7 +13,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended",
     "airbnb-typescript/base",
-    "plugin:promise/recommended"
+    "plugin:promise/recommended",
+    "plugin:unicorn/recommended"
   ],
   "rules": {
     "@typescript-eslint/indent": ["error", 2],
@@ -23,7 +25,30 @@
       { "caseSensitive": true, "natural": false, "minKeys": 2 }
     ],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "pascalCase": true,
+          "kebabCase": true
+        },
+        "ignore": [
+          "^next-env\\.d\\.ts$"
+        ]
+      }
+    ],
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "allowList": {
+          "defaultProps": true
+        },
+        "ignore": [
+          "next-env\\.d$"
+        ]
+      }
+    ]
   },
   "env": {
     "cypress/globals": true
