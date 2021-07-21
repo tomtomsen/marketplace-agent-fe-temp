@@ -5,14 +5,10 @@ interface Properties {
   children: string,
 }
 
-const Heading1: React.FunctionComponent<Properties> = (props) => {
-  const { children } = props;
-
-  return (
-    <>
-      <MUITypography component="h1" variant="h2">{children}</MUITypography>
-    </>
-  );
-};
+const Heading1: React.FunctionComponent<Properties> = ({ children }) => (
+  <>
+    <MUITypography component="h1" variant="h2">{children}</MUITypography>
+  </>
+);
 
 export default Heading1;
