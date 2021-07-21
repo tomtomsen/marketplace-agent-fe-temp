@@ -1,6 +1,5 @@
 import React from 'react';
 import UserApi from '../../../api/UserApi';
-import { useBoop } from '../../elements/Boop';
 import Button from '../../elements/Button/Button';
 import DeleteButton from '../../elements/Button/DeleteButton';
 import TextField from '../../elements/TextField/TextField';
@@ -26,9 +25,7 @@ const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) =
     setErrorMessage('');
     try {
       await UserApi.queries.delete(query.id);
-      //if (Math.random() >= 0) {
-        throw new Error(`failed ${new Date()}`);
-      //}
+      throw new Error(`failed ${new Date()}`);
       onRemoved();
     } catch (error) {
       setErrorMessage(error.message);

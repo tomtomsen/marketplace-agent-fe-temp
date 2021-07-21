@@ -49,6 +49,6 @@ const DeleteButton: React.FunctionComponent<Properties> = ({
       </animated.span>
     </MUIIconButton>
   );
-}
+};
 
 export default DeleteButton;
