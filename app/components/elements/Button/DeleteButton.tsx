@@ -1,43 +1,51 @@
 import React from 'react';
-import MUICloseIcon from '@material-ui/icons/Close';
+import MUIDeleteIcon from '@material-ui/icons/Delete';
 import MUIIconButton from '@material-ui/core/IconButton';
 import { animated } from 'react-spring';
 import { useBoop } from '../Boop';
+import ConfirmButtons from '../../modules/ConfirmButtons/ConfirmButtons';
 
 type Properties = {
-  onClick: () => void;
+  onDelete: () => void;
   disabled: boolean;
-  ok: boolean;
 };
 
 const DeleteButton: React.FunctionComponent<Properties> = ({
-  onClick = () => {},
+  onDelete = () => {},
   disabled = false,
-  ok = true,
 }) => {
   const [styleHi, triggerHi] = useBoop({ rotation: 10 });
-  const [styleNo, triggerNo] = useBoop({ x: 3 });
+  const [isConfirm, setIsConfirm] = React.useState(false);
+
   const handleClick = () => {
-    triggerHi();
-    onClick();
+    setIsConfirm(true);
   };
 
-  React.useEffect(() => {
-    if (!ok) {
-      triggerNo();
-    }
-  }, [ok, triggerNo]);
+  const handleConfirm = () => {
+    onDelete();
+    setIsConfirm(false);
+  };
+
+  const handleCancel = () => {
+    setIsConfirm(false);
+  };
+
+  if (isConfirm) {
+    return (
+      <ConfirmButtons onConfirm={handleConfirm} onCancel={handleCancel} />
+    );
+  }
 
   return (
     <MUIIconButton
       onMouseEnter={() => triggerHi()}
       aria-label="delete"
       color="secondary"
-      onClick={handleClick}
+      onClick={() => handleClick()}
       disabled={disabled}
     >
-      <animated.span style={{ ...styleHi, ...styleNo }}>
-        <MUICloseIcon />
+      <animated.span style={styleHi}>
+        <MUIDeleteIcon />
       </animated.span>
     </MUIIconButton>
   );

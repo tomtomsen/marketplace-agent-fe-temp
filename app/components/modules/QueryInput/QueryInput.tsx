@@ -57,7 +57,7 @@ const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) =
         onChange={(event) => setValue(event.target.value)}
       />
       <Button onClick={handleUpdate} disabled={saving}>Speichern</Button>
-      <DeleteButton onClick={handleRemove} disabled={deleting} ok={errorMessage === ''} />
+      <DeleteButton onDelete={handleRemove} disabled={deleting} ok={errorMessage === ''} />
       {errorMessage && <div>{errorMessage}</div>}
     </>
   );
