@@ -1,17 +1,18 @@
 import React from 'react';
-import Footer from '../../modules/footer/footer';
-import Header from '../../modules/header/header';
+import Content from '../../modules/page/Content/Content';
+import Footer from '../../modules/page/Footer/Footer';
+import Header from '../../modules/page/Header/Header';
 
 interface Props {
-  children: React.ReactNode;
+  children: React.ReactNode | Array<React.ReactNode>;
 }
 
 const Default: React.FunctionComponent<Props> = ({ children }) => (
   <>
     <Header />
-    <div>
+    <Content>
       {children}
-    </div>
+    </Content>
     <Footer />
   </>
 );

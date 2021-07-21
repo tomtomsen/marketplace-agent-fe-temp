@@ -1,6 +1,6 @@
 import React from 'react';
-import Queries from '../../modules/queries/queries';
-import Settings from '../../modules/settings/settings';
+import Queries from '../../modules/Queries/queries';
+import Settings from '../../modules/settings/Settings';
 import { useUser } from '../../../context/User/UserProvider';
 import { getUser } from '../../../context/User/UserAction';
 

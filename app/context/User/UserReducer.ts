@@ -19,7 +19,7 @@ type TAction = {
   payload: TUser | TError | TLoading | any;
 };
 
-export default (state: TUserState, action: TAction): any => {
+const reducer = (state: TUserState, action: TAction): any => {
   switch (action.type) {
     case 'SET_USER':
       return {
@@ -41,3 +41,5 @@ export default (state: TUserState, action: TAction): any => {
       return state;
   }
 };
+
+export default reducer;
