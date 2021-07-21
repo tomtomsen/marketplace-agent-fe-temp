@@ -5,7 +5,8 @@
     "cypress",
     "react-hooks",
     "promise",
-    "unicorn"
+    "unicorn",
+    "security"
   ],
   "extends": [
     "next",
@@ -14,7 +15,8 @@
     "plugin:cypress/recommended",
     "airbnb-typescript/base",
     "plugin:promise/recommended",
-    "plugin:unicorn/recommended"
+    "plugin:unicorn/recommended",
+    "plugin:security/recommended"
   ],
   "rules": {
     "@typescript-eslint/indent": ["error", 2],
