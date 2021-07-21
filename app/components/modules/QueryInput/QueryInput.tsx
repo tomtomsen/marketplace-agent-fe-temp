@@ -1,6 +1,5 @@
 import React from 'react';
 import MUICloseIcon from '@material-ui/icons/Close';
-import MUIIconButton from '@material-ui/core/IconButton';
 import { animated } from 'react-spring';
 import UserApi from '../../../api/UserApi';
 import { useBoop } from '../../elements/Boop';
@@ -17,26 +16,12 @@ interface Properties {
   onRemoved: () => void;
 }
 
-function SomeComponent() {
-  const [style, trigger] = useBoop({ rotation: 10 });
-  return (
-    <MUIIconButton
-      onMouseEnter={() => trigger()}
-      aria-label="close"
-      color="inherit"
-    >
-      <animated.span style={style}>
-        <MUICloseIcon />
-      </animated.span>
-    </MUIIconButton>
-  );
-}
-
 const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) => {
   const [value, setValue] = React.useState(query.query);
   const [saving, setSaving] = React.useState<boolean>(false);
   const [deleting, setDeleting] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>('');
+  const [styleHi, triggerHi] = useBoop({ rotation: 10 });
 
   const handleRemove = async () => {
     setDeleting(true);
@@ -63,7 +48,6 @@ const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) =
 
   return (
     <>
-      <SomeComponent />
       <TextField
         label="Suchbegriff"
         helperText={query.id}
@@ -71,7 +55,16 @@ const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) =
         onChange={(event) => setValue(event.target.value)}
       />
       <Button onClick={handleUpdate} disabled={saving}>Speichern</Button>
-      <Button onClick={handleRemove} disabled={deleting}>x</Button>
+      <Button
+        onMouseEnter={() => triggerHi()}
+        onClick={handleRemove}
+        disabled={deleting}
+        iconStart={(
+          <animated.span style={styleHi}>
+            <MUICloseIcon />
+          </animated.span>
+        )}
+      >Hi</Button>
       {errorMessage && <div>{errorMessage}</div>}
     </>
   );
