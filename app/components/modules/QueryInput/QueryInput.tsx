@@ -36,15 +36,15 @@ const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) =
   const [value, setValue] = React.useState(query.query);
   const [saving, setSaving] = React.useState<boolean>(false);
   const [deleting, setDeleting] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string>('');
+  const [errorMessage, setErrorMessage] = React.useState<string>('');
 
   const handleRemove = async () => {
     setDeleting(true);
     try {
       await UserApi.queries.delete(query.id);
       onRemoved();
-    } catch (e) {
-      setError(e.message);
+    } catch (error) {
+      setErrorMessage(error.message);
     } finally {
       setDeleting(false);
     }
@@ -54,8 +54,8 @@ const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) =
     setSaving(true);
     try {
       await UserApi.queries.put(query.id, value);
-    } catch (e) {
-      setError(e.message);
+    } catch (error) {
+      setErrorMessage(error.message);
     } finally {
       setSaving(false);
     }
@@ -68,11 +68,11 @@ const QueryInput: React.FunctionComponent<Properties> = ({ onRemoved, query }) =
         label="Suchbegriff"
         helperText={query.id}
         defaultValue={query.query}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(event) => setValue(event.target.value)}
       />
       <Button onClick={handleUpdate} disabled={saving}>Speichern</Button>
       <Button onClick={handleRemove} disabled={deleting}>x</Button>
-      {error && <div>{error}</div>}
+      {errorMessage && <div>{errorMessage}</div>}
     </>
   );
 };
