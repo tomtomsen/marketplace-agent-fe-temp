@@ -30,7 +30,6 @@ export const useBoop = ({
       return () => {};
     }
     const timeoutId = window.setTimeout(() => {
-      console.log('out');
       setIsBooped(false);
     }, timing);
 
@@ -45,4 +44,4 @@ export const useBoop = ({
   return [appliedStyle, trigger];
 };
 
-export default null;
+export default undefined;
