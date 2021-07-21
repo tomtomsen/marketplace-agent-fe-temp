@@ -24,7 +24,11 @@
     "sort-keys": [
       "error",
       "asc",
-      { "caseSensitive": true, "natural": false, "minKeys": 2 }
+      {
+        "caseSensitive": true,
+        "natural": false,
+        "minKeys": 2
+      }
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
