@@ -10,7 +10,7 @@ module.exports = {
   '**/{.eslintrc,cypress,.npmpackagejsonlintrc,tsconfig,package}.json': [
     'npx --no-install v8r'
   ],
-  '**/*.ts': (fileNames) => [
+  '**/*.{ts, tsx}': (fileNames) => [
     fileNames.length > 10
     ? 'npx --no-install eslint --fix --ext .ts,.tsx'
     : `npx --no-install eslint --fix --ext .ts,.tsx ${fileNames.join(' ')}`,
