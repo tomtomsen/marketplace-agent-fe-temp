@@ -1,5 +1,9 @@
 import React from 'react';
+import MUICloseIcon from '@material-ui/icons/Close';
+import MUIIconButton from '@material-ui/core/IconButton';
+import { animated } from 'react-spring';
 import UserAPI from '../../../api/UserAPI';
+import { useBoop } from '../../elements/Boop';
 import Button from '../../elements/button/Button';
 import TextField from '../../elements/textField/TextField';
 
@@ -10,36 +14,65 @@ type TQuery = {
 
 interface Props {
   query: TQuery,
+  onRemoved: () => void;
 }
 
-const QueryInput: React.FunctionComponent<Props> = ({ query }) => {
+function SomeComponent() {
+  const [style, trigger] = useBoop({ rotation: 10 });
+  return (
+    <MUIIconButton
+      onMouseEnter={trigger}
+      aria-label="close"
+      color="inherit"
+    >
+      <animated.span style={style}>
+          <MUICloseIcon />
+      </animated.span>
+    </MUIIconButton>
+  );
+}
+
+const QueryInput: React.FunctionComponent<Props> = ({ onRemoved, query }) => {
   const [value, setValue] = React.useState(query.query);
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [saving, setSaving] = React.useState<boolean>(false);
+  const [deleting, setDeleting] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
 
-  const onSave = async () => {
-    setLoading(true);
+  const handleRemove = async () => {
+    setDeleting(true);
+    try {
+      await UserAPI.queries.delete(query.id);
+      onRemoved();
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const handleUpdate = async () => {
+    setSaving(true);
     try {
       await UserAPI.queries.put(query.id, value);
     } catch (e) {
       setError(e.message);
     } finally {
-      setLoading(false);
+      setSaving(false);
     }
   };
 
   return (
     <>
-      <div key={query.id}>
-        <TextField
-          label="Suchbegriff"
-          helperText={query.id}
-          defaultValue={query.query}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <Button onClick={onSave} disabled={loading}>Speichern</Button>
-        {error && <div>{error}</div>}
-      </div>
+      <SomeComponent />
+      <TextField
+        label="Suchbegriff"
+        helperText={query.id}
+        defaultValue={query.query}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <Button onClick={handleUpdate} disabled={saving}>Speichern</Button>
+      <Button onClick={handleRemove} disabled={deleting}>x</Button>
+      {error && <div>{error}</div>}
     </>
   );
 };

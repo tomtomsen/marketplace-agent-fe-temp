@@ -23,6 +23,7 @@ type TGetUserResponse = {
 };
 
 type TPutQueryResponse = unknown;
+type TDeleteQueryResponse = unknown;
 
 const UserAPI = {
   get: (): Promise<TGetUserResponse> => delay(
@@ -37,6 +38,16 @@ const UserAPI = {
   ),
 
   queries: {
+    delete: (id: string): Promise<TDeleteQueryResponse> => delay(
+      axios
+        .delete(
+          `${host}/user/query/${id}`,
+          {
+            headers: defaultHeaders,
+          },
+        ),
+    ),
+
     get: (): Promise<TGetQueriesResponse> => axios
       .get(
         `${host}/user/queries`,
