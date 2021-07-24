@@ -1,20 +1,14 @@
 import React from 'react';
-
-export type TErrorType = 'error' | 'warning' | 'success' | 'info';
-
-export type TGlobalErrorState = {
-  message: string,
-  type: TErrorType,
-};
+import { ErrorType } from '../../types';
 
 export type TGlobalErrorContext = {
-  state: TGlobalErrorState;
-  setError: (value: TGlobalErrorState) => void;
+  state: ErrorType;
+  setError: (value: ErrorType) => void;
 };
 
-export const initialState: TGlobalErrorState = {
+export const initialState: ErrorType = {
   message: '',
-  type: 'error',
+  severity: 'error',
 };
 
 const GlobalErrorContext = React.createContext<TGlobalErrorContext>({

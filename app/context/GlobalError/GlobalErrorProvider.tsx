@@ -1,6 +1,7 @@
 import React from 'react';
 import GlobalError from '../../components/modules/globalError/GlobalError';
-import GlobalErrorContext, { TGlobalErrorState, TGlobalErrorContext } from './GlobalErrorContext';
+import { ErrorType } from '../../types';
+import GlobalErrorContext, { TGlobalErrorContext } from './GlobalErrorContext';
 
 export const useError = (): TGlobalErrorContext => React.useContext(GlobalErrorContext);
 
@@ -9,11 +10,11 @@ type Properties = {
 };
 
 const GlobalErrorProvider: React.FunctionComponent<Properties> = ({ children }) => {
-  const [error, setError] = React.useState<TGlobalErrorState>({ message: '', type: 'error' });
+  const [error, setError] = React.useState<ErrorType>({ message: '', severity: 'error' });
 
   return (
     <GlobalErrorContext.Provider value={{ setError, state: error }}>
-      <GlobalError message={error.message} type={error.type}></GlobalError>
+      <GlobalError message={error.message} severity={error.severity}></GlobalError>
       {children}
     </GlobalErrorContext.Provider>
   );

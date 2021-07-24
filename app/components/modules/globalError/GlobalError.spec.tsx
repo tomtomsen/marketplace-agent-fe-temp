@@ -6,7 +6,7 @@ const MyButton = ({ onClick }: { onClick: () => string }) => {
   const { setError } = useError();
 
   const handleClick = () => {
-    setError({ message: onClick(), type: 'error' });
+    setError({ message: onClick(), severity: 'error' });
   };
 
   return (

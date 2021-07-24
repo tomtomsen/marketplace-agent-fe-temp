@@ -5,15 +5,9 @@ import MUISnackbar from '@material-ui/core/Snackbar';
 import MUICloseIcon from '@material-ui/icons/Close';
 import MUIIconButton from '@material-ui/core/IconButton';
 import Slide, { SlideProps } from '@material-ui/core/Slide';
+import { ErrorType } from '../../../types';
 
-export type ErrorType = 'error' | 'warning' | 'success' | 'info';
-
-export interface ErrorProperties {
-  type?: ErrorType;
-  message?: string;
-}
-
-type GlobalErrorProperties = ErrorProperties;
+type GlobalErrorProperties = ErrorType;
 
 const SlideTransition = (properties: SlideProps) => <Slide {...properties} direction="up" />;
 
@@ -23,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GlobalError: React.FunctionComponent<GlobalErrorProperties> = ({ message, type }) => {
+const GlobalError: React.FunctionComponent<GlobalErrorProperties> = ({ message, severity }) => {
   const [open, setOpen] = React.useState(true);
   const classes = useStyles();
   React.useEffect(() => {
@@ -49,7 +43,7 @@ const GlobalError: React.FunctionComponent<GlobalErrorProperties> = ({ message, 
       <MUIAlert
         variant="filled"
         onClose={handleClose}
-        severity={type}
+        severity={severity}
         action={
           <MUIIconButton
             data-testid="global-error-close"
