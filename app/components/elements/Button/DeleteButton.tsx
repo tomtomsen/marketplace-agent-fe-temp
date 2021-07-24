@@ -6,15 +6,16 @@ import { useBoop } from '../Boop';
 import ConfirmButtons from '../../modules/ConfirmButtons/ConfirmButtons';
 
 type Properties = {
-  onDelete: () => void;
-  disabled: boolean;
+  onDelete?: () => void;
+  disabled?: boolean;
 };
 
 const DeleteButton: React.FunctionComponent<Properties> = ({
   onDelete = () => {},
   disabled = false,
 }) => {
-  const [styleHi, triggerHi] = useBoop({ rotation: 10 });
+  // const [styleHi, triggerHi] = useBoop({ rotation: 10 });
+  const styleHi = {};
   const [isConfirm, setIsConfirm] = React.useState(false);
 
   const handleClick = () => {
@@ -22,8 +23,8 @@ const DeleteButton: React.FunctionComponent<Properties> = ({
   };
 
   const handleConfirm = () => {
+    // setIsConfirm(false);
     onDelete();
-    setIsConfirm(false);
   };
 
   const handleCancel = () => {
@@ -32,14 +33,26 @@ const DeleteButton: React.FunctionComponent<Properties> = ({
 
   if (isConfirm) {
     return (
-      <ConfirmButtons onConfirm={handleConfirm} onCancel={handleCancel} />
+      <ConfirmButtons
+        onConfirm={() => handleConfirm()}
+        onCancel={() => handleCancel()} />
     );
   }
 
   return (
     <MUIIconButton
       data-testid="delete-button"
-      onMouseEnter={() => triggerHi()}
+      color="secondary"
+      onClick={() => handleClick()}
+    >
+      <MUIDeleteIcon />
+    </MUIIconButton>
+  );
+/*
+  return (
+    <MUIIconButton
+      data-testid="delete-button"
+      // onMouseEnter={() => triggerHi()}
       aria-label="delete"
       color="secondary"
       onClick={() => handleClick()}
@@ -50,6 +63,7 @@ const DeleteButton: React.FunctionComponent<Properties> = ({
       </animated.span>
     </MUIIconButton>
   );
+*/
 };
 
 export default DeleteButton;
