@@ -16,6 +16,7 @@ const TextField: React.FunctionComponent<Properties> = ({
 }) => (
   <>
     <MUITextField
+      data-testid="search-term" // TODO(tomtomsen): move up
       defaultValue={defaultValue}
       label={label}
       helperText={helperText}

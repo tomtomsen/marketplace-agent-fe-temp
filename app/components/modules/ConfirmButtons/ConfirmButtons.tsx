@@ -21,7 +21,9 @@ const ConfirmButtons: React.FunctionComponent<Properties> = ({
 
   return (
     <>
-      <IconButton onClick={() => handleConfirm()}>
+      <IconButton
+        data-testid="confirm-button"
+        onClick={() => handleConfirm()}>
         <Check style={{ color: 'green' }} />
       </IconButton>
       <IconButton color={'primary'} onClick={() => handleCancel()}>

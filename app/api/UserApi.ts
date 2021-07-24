@@ -1,24 +1,20 @@
 import axios from 'axios';
 import delay from '../tools/delay';
+import { QueryConfiguration } from '../types';
 
 const host = 'https://private-b3485f-tomtomsenmarketplace.apiary-mock.com';
 const defaultHeaders = {
   'Content-Type': 'application/json',
 };
 
-type TQuery = {
-  id: string,
-  query: string,
-};
-
-type TGetQueriesResponse = Array<TQuery>;
+type TGetQueriesResponse = Array<QueryConfiguration>;
 
 type TSettings = {
   providers: Array<string>;
 };
 
 type TGetUserResponse = {
-  queries: Array<TQuery>,
+  queries: Array<QueryConfiguration>,
   settings: TSettings,
 };
 

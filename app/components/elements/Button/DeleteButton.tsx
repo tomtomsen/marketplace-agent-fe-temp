@@ -38,6 +38,7 @@ const DeleteButton: React.FunctionComponent<Properties> = ({
 
   return (
     <MUIIconButton
+      data-testid="delete-button"
       onMouseEnter={() => triggerHi()}
       aria-label="delete"
       color="secondary"
