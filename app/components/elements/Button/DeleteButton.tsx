@@ -2,8 +2,8 @@ import React from 'react';
 import MUIDeleteIcon from '@material-ui/icons/Delete';
 import MUIIconButton from '@material-ui/core/IconButton';
 import { animated } from 'react-spring';
-import { useBoop } from '../Boop';
 import ConfirmButtons from '../../modules/ConfirmButtons/ConfirmButtons';
+import { useBoop } from '../Boop';
 
 type Properties = {
   onDelete?: () => void;
@@ -15,7 +15,6 @@ const DeleteButton: React.FunctionComponent<Properties> = ({
   disabled = false,
 }) => {
   // const [styleHi, triggerHi] = useBoop({ rotation: 10 });
-  const styleHi = {};
   const [isConfirm, setIsConfirm] = React.useState(false);
 
   const handleClick = () => {
@@ -23,7 +22,7 @@ const DeleteButton: React.FunctionComponent<Properties> = ({
   };
 
   const handleConfirm = () => {
-    // setIsConfirm(false);
+    setIsConfirm(false);
     onDelete();
   };
 
@@ -42,28 +41,19 @@ const DeleteButton: React.FunctionComponent<Properties> = ({
   return (
     <MUIIconButton
       data-testid="delete-button"
-      color="secondary"
-      onClick={() => handleClick()}
-    >
-      <MUIDeleteIcon />
-    </MUIIconButton>
-  );
-/*
-  return (
-    <MUIIconButton
-      data-testid="delete-button"
       // onMouseEnter={() => triggerHi()}
       aria-label="delete"
       color="secondary"
       onClick={() => handleClick()}
       disabled={disabled}
     >
-      <animated.span style={styleHi}>
+      <animated.span
+        // style={styleHi}
+      >
         <MUIDeleteIcon />
       </animated.span>
     </MUIIconButton>
   );
-*/
 };
 
 export default DeleteButton;

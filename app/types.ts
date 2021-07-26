@@ -5,6 +5,9 @@ export type QuerySearchTerm = string;
 export type QueryConfiguration = {
   id: QueryConfigurationId;
   searchTerm: QuerySearchTerm;
+  loading: boolean;
+  error: boolean;
+  message: string;
 };
 
 export type Errorseverity = 'error' | 'info' | 'warning' | 'success';

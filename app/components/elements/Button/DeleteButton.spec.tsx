@@ -25,20 +25,6 @@ describe('<DeleteButton />', () => {
       });
   });
 
-  it('shows delete button after cancel', () => {
-    mount(<DeleteButton />);
-
-    cy.get('[data-testid="delete-button"]')
-      .click();
-
-    cy.get('[data-testid="confirm-buttons"]')
-      .find('[data-testid="cancel-button"]')
-      .click();
-
-    cy.get('[data-testid="delete-button"]')
-      .should('have.length', 1);
-  });
-
   it('should not trigger onDelete if canceled', () => {
     const spy = {
       handleDelete: () => {},
@@ -59,5 +45,33 @@ describe('<DeleteButton />', () => {
       .should(() => {
         expect(deleteSpy).to.not.be.called;
       });
+  });
+
+  it('shows delete button after cancel', () => {
+    mount(<DeleteButton />);
+
+    cy.get('[data-testid="delete-button"]')
+      .click();
+
+    cy.get('[data-testid="confirm-buttons"]')
+      .find('[data-testid="cancel-button"]')
+      .click();
+
+    cy.get('[data-testid="delete-button"]')
+      .should('have.length', 1);
+  });
+
+  it('shows delete button after confirm', () => {
+    mount(<DeleteButton />);
+
+    cy.get('[data-testid="delete-button"]')
+      .click();
+
+    cy.get('[data-testid="confirm-buttons"]')
+      .find('[data-testid="confirm-button"]')
+      .click();
+
+    cy.get('[data-testid="delete-button"]')
+      .should('have.length', 1);
   });
 });

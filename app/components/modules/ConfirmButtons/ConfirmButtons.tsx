@@ -21,7 +21,7 @@ const ConfirmButtons: React.FunctionComponent<Properties> = ({
 
   return (
     <>
-      <div data-testid="confirm-buttons">
+      <span data-testid="confirm-buttons">
         <IconButton
           data-testid="confirm-button"
           onClick={() => handleConfirm()}>
@@ -34,7 +34,7 @@ const ConfirmButtons: React.FunctionComponent<Properties> = ({
         >
           <Close />
         </IconButton>
-      </div>
+      </span>
     </>
   );
 };

@@ -1,6 +1,6 @@
 {
   "testFiles": "**/*.spec.{ts,tsx}",
-  "componentFolder": "app/components",
+  "componentFolder": "app",
   "env": {
     "codeCoverage": {
       "url": "/api/__coverage__"
