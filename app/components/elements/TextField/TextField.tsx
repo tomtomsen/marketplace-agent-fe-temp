@@ -6,6 +6,7 @@ interface Properties {
   helperText?: string;
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
   defaultValue?: string;
+  value?: string;
 }
 
 const TextField: React.FunctionComponent<Properties> = ({
@@ -13,6 +14,7 @@ const TextField: React.FunctionComponent<Properties> = ({
   label,
   onChange,
   defaultValue,
+  value,
 }) => (
   <>
     <MUITextField
@@ -21,6 +23,7 @@ const TextField: React.FunctionComponent<Properties> = ({
       label={label}
       helperText={helperText}
       onChange={onChange}
+      value={value}
     />
   </>
 );

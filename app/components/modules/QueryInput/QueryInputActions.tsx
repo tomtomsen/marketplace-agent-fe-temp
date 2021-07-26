@@ -7,13 +7,21 @@ import DeleteButton from '../../elements/Button/DeleteButton';
 
 type Properties = {
   query: QueryConfiguration;
+  changed?: boolean;
 };
 
 const handleUpdate = async () => {
-  // await deleteQuery(query.id, userDispatch);
+  await updateQuery(query.id, userDispatch);
 };
 
-const QueryInputActions: React.FunctionComponent<Properties> = ({ query }) => {
+const handleReset = () => {
+  console.log(reset);
+};
+
+const QueryInputActions: React.FunctionComponent<Properties> = ({
+  query,
+  changed = false,
+}) => {
   const [, userDispatch] = useUser();
 
   const handleRemove = async () => {
@@ -22,8 +30,11 @@ const QueryInputActions: React.FunctionComponent<Properties> = ({ query }) => {
 
   return (
     <>
-      <Button onClick={handleUpdate} disabled={query.loading}>Speichern</Button>
-      <DeleteButton onDelete={handleRemove} disabled={false} />
+      <Button onClick={() => handleUpdate()} disabled={query.loading}>Speichern</Button>
+      {(changed
+        && <Button onClick={() => handleReset()} disabled={query.loading}>Reset</Button>)
+        || <DeleteButton onDelete={() => handleRemove} disabled={false} />
+      }
       {query.error && query.message}
     </>
   );
