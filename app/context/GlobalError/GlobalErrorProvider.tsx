@@ -1,5 +1,5 @@
 import React from 'react';
-import GlobalError from '../../components/modules/globalError/GlobalError';
+import GlobalError from '../../components/modules/GlobalError/GlobalError';
 import { ErrorType } from '../../types';
 import GlobalErrorContext, { TGlobalErrorContext } from './GlobalErrorContext';
 

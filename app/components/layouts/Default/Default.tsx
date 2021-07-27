@@ -1,7 +1,7 @@
 import React from 'react';
-import Content from '../../modules/page/Content/Content';
-import Footer from '../../modules/page/Footer/Footer';
-import Header from '../../modules/page/Header/Header';
+import Content from '../../modules/Page/Content/Content';
+import Footer from '../../modules/Page/Footer/Footer';
+import Header from '../../modules/Page/Header/Header';
 
 interface Properties {
   children: React.ReactNode | Array<React.ReactNode>;
