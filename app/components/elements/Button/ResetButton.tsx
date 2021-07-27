@@ -24,9 +24,7 @@ const ResetButton: React.FunctionComponent<Properties> = ({
       onClick={() => handleClick()}
       disabled={disabled}
     >
-      <animated.span>
-        <MUIReloadIcon />
-      </animated.span>
+      <MUIReloadIcon />
     </MUIIconButton>
   );
 };

@@ -1,68 +1,108 @@
 import React from 'react';
-import { deleteQuery, updateQuery } from '../../../context/User/UserAction';
-import { useUser } from '../../../context/User/UserProvider';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { QueryConfiguration } from '../../../types';
-import DeleteButton from '../../elements/Button/DeleteButton';
+import { Box, Button, Collapse, Link, Typography } from '@material-ui/core';
 import ResetButton from '../../elements/Button/ResetButton';
-import SaveButton from '../../elements/Button/SaveButton';
-import TextField from '../../elements/TextField/TextField';
 
 interface Properties {
   query: QueryConfiguration,
 }
 
-const hasChanged = (a: string, b: string) => a !== b;
+const TextFieldSkeleton = () => (
+  <Skeleton variant="rect" height={40} width="100%" style={{ marginBottom: '0px', marginTop: '7px' }} />
+);
 
 const QueryInput: React.FunctionComponent<Properties> = ({ query }) => {
-  const [, userDispatch] = useUser();
-  const [searchTerm, setSearchTerm] = React.useState(query.searchTerm);
-  const [changed, setChanged] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState(true);
+  const [collapsed, setCollapsed] = React.useState(false);
 
-  const handleReset = () => {
-    setSearchTerm(query.searchTerm);
-    setChanged(false);
+  const toggleLoading = () => {
+    const newLoading = !loading;
+    setLoading(newLoading);
   };
 
-  const handleRemove = async () => {
-    await deleteQuery(query.id, userDispatch);
-  };
-
-  const handleUpdate = async () => {
-    await updateQuery({
-      ...query,
-      searchTerm,
-    }, userDispatch);
-
-    if (!query.error) {
-      setSearchTerm(searchTerm);
-      setChanged(false);
-    }
-  };
-
-  const handleSearchTermChanged = (value: string) => {
-    setChanged(hasChanged(value, query.searchTerm));
-    setSearchTerm(value);
+  const toggleCollapse = (event: MouseEvent<HTMLLinkElement>) => {
+    event.preventDefault();
+    const newCollapse = !collapsed;
+    setCollapsed(newCollapse);
+    return false;
   };
 
   return (
     <>
-      <TextField
-        data-testid="search-term"
-        label="Suchbegriff"
-        helperText={query.id}
-        value={searchTerm}
-        onChange={(event) => handleSearchTermChanged(event.target.value)}
-      />
+      <Grid
+        container
+        direction="row"
+        spacing={1}
+      >
+        <Grid item xs={12}>
+          {loading ? (
+            <TextFieldSkeleton />
+          ) : (
+            <TextField
+              fullWidth
+              label="searchTerm"
+            />
+          )}
+        </Grid>
 
-      <SaveButton
-        onSave={() => handleUpdate()} disabled={!changed || query.loading} />
-      {(changed
-        && <ResetButton onReset={() => handleReset()} disabled={query.loading} />)
-        || <DeleteButton onDelete={() => handleRemove()} disabled={query.loading} />
-      }
-      {query.error && query.message}
+        <Grid item xs={12}>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item xs={false} sm={4}></Grid>
+            <Grid item xs={6} sm={4}>
+              <Box display="flex" alignItems="center" justifyContent="center">
+                <Typography>
+                  {loading ? (
+                    <Skeleton variant="rect" width={70} />
+                  ) : (
+                    <Link href="#" onClick={toggleCollapse}>
+                      { collapsed ? (<>Weniger</>) : (<>Weitere</>) }
+                    </Link>
+                  )}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={6} sm={4}>
+              <Box display="flex" alignItems="center" justifyContent="flex-end">
+                <Box>
+                  {loading ? (
+                    <Skeleton variant="circle" width={32} height={32} style={{ margin: '8px' }} />
+                  ) : (
+                    <ResetButton />
+                  )}
+                </Box>
+                <Box margin={1}>
+                  {loading ? (
+                    <Skeleton variant="circle" width={32} height={32} style={{ margin: '8px' }} />
+                  ) : (
+                    <ResetButton />
+                  )}
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
+          <Collapse in={collapsed} unmountOnExit>
+            <Box>
+              <TextField
+                label="von"
+              />
+              <TextField
+                label="bis"
+              />
+            </Box>
+          </Collapse>
+        </Grid>
+      </Grid>
+      <Button onClick={() => toggleLoading()}>x</Button>
     </>
   );
-}
+};
 
 export default QueryInput;
