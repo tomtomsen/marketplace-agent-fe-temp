@@ -7,7 +7,7 @@ interface Properties {
 
 const Heading1: React.FunctionComponent<Properties> = ({ children }) => (
   <>
-    <MUITypography component="h1" variant="h2">{children}</MUITypography>
+    <MUITypography component="h1" variant="h4" style={{ marginBottom: 20, marginTop: 40 }}>{children}</MUITypography>
   </>
 );
 

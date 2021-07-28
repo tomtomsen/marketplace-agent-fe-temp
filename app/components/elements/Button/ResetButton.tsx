@@ -1,7 +1,6 @@
 import React from 'react';
 import MUIReloadIcon from '@material-ui/icons/Replay';
 import MUIIconButton from '@material-ui/core/IconButton';
-import { animated } from 'react-spring';
 
 type Properties = {
   onReset?: () => void;
@@ -20,7 +19,6 @@ const ResetButton: React.FunctionComponent<Properties> = ({
     <MUIIconButton
       data-testid="reset-button"
       aria-label="reset"
-      color="primary"
       onClick={() => handleClick()}
       disabled={disabled}
     >

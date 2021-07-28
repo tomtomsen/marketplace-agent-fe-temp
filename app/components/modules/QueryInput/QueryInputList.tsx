@@ -14,23 +14,27 @@ const QueryInputList: React.FunctionComponent<Properties> = () => {
     user,
   } = userState;
 
-  if (loading || error) {
-    return (
-      <>
-        <QueryInputSkeleton />
-        <QueryInputSkeleton />
-        <QueryInputSkeleton />
-      </>
-    );
+  if (!loading && !user.queries) {
+    return (<></>);
   }
 
-  if (!user.queries) {
-    return (
-      <><div>xxx</div></>
-    );
+  const defaultQuery = {
+    error: false,
+    id: '',
+    loading: false,
+    message: '',
+    searchTerm: '',
+  };
+  let data: Array<QueryConfiguration> = [
+    { ...defaultQuery, id: '1' },
+    { ...defaultQuery, id: '2' },
+    { ...defaultQuery, id: '3' },
+  ];
+  if (user.queries) {
+    data = user.queries;
   }
 
-  if (user.queries.length === 0) {
+  if (!loading && data.length === 0) {
     return (
       <>
         <div data-testid="query-input-list">
@@ -43,9 +47,9 @@ const QueryInputList: React.FunctionComponent<Properties> = () => {
   return (
     <>
       <div data-testid="query-input-list">
-        {user.queries.map((query: QueryConfiguration) => (
+        {data.map((query: QueryConfiguration) => (
           <div key={query.id}>
-            <QueryInput query={query} />
+            <QueryInput query={query} loading={loading}/>
           </div>
         ))}
       </div>

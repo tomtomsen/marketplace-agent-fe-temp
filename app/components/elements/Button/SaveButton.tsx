@@ -1,7 +1,6 @@
 import React from 'react';
 import MUISaveIcon from '@material-ui/icons/Save';
 import MUIIconButton from '@material-ui/core/IconButton';
-import { animated } from 'react-spring';
 
 type Properties = {
   onSave?: () => void;
@@ -23,10 +22,9 @@ const SaveButton: React.FunctionComponent<Properties> = ({
       color="primary"
       onClick={() => handleClick()}
       disabled={disabled}
+      type="submit"
     >
-      <animated.span>
-        <MUISaveIcon />
-      </animated.span>
+      <MUISaveIcon />
     </MUIIconButton>
   );
 };

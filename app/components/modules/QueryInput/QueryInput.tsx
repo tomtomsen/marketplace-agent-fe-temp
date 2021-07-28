@@ -2,11 +2,33 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Skeleton from '@material-ui/lab/Skeleton';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Collapse,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputLabel,
+  Link,
+  Typography,
+} from '@material-ui/core';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { QueryConfiguration } from '../../../types';
-import { Box, Button, Collapse, Link, Typography } from '@material-ui/core';
 import ResetButton from '../../elements/Button/ResetButton';
+import PriceRangeFields from '../../elements/PriceRangeFields/PriceRangeFields';
+import useToggle from '../../../hooks/use-toggle';
+import CollapseButton, { State } from '../../elements/Button/CollapseButton';
+import IconButtonSkeleton from '../../elements/Skeleton/IconButtonSkeleton';
+import SaveButton from '../../elements/Button/SaveButton';
 
 interface Properties {
+  loading: boolean,
   query: QueryConfiguration,
 }
 
@@ -14,93 +36,86 @@ const TextFieldSkeleton = () => (
   <Skeleton variant="rect" height={40} width="100%" style={{ marginBottom: '0px', marginTop: '7px' }} />
 );
 
-const QueryInput: React.FunctionComponent<Properties> = ({ query }) => {
-  const [loading, setLoading] = React.useState(true);
-  const [collapsed, setCollapsed] = React.useState(false);
+type Inputs = {
+  searchTerm: string,
+};
 
-  const toggleLoading = () => {
-    const newLoading = !loading;
-    setLoading(newLoading);
-  };
+const onSubmit: SubmitHandler<Inputs> = (data) => {
+  console.log(data);
+};
 
-  const toggleCollapse = (event: MouseEvent<HTMLLinkElement>) => {
-    event.preventDefault();
-    const newCollapse = !collapsed;
-    setCollapsed(newCollapse);
-    return false;
-  };
+const QueryInput: React.FunctionComponent<Properties> = ({ query, loading }) => {
+  const [showOptions, toggleShowOptions] = useToggle(false);
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      ...query,
+    },
+  });
 
   return (
     <>
-      <Grid
-        container
-        direction="row"
-        spacing={1}
-      >
-        <Grid item xs={12}>
-          {loading ? (
-            <TextFieldSkeleton />
-          ) : (
-            <TextField
-              fullWidth
-              label="searchTerm"
-            />
-          )}
-        </Grid>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid
+          container
+          direction="row"
+          spacing={1}
+        >
+          <Grid item xs={12}>
+            {loading ? (
+              <TextFieldSkeleton />
+            ) : (
+              <TextField
+                fullWidth
+                label="searchTerm"
+                defaultValue={query.searchTerm}
+                {...register('searchTerm', { required: true })}
+                error={!!errors?.searchTerm}
+              />
+            )}
+          </Grid>
 
-        <Grid item xs={12}>
-          <Grid
-            container
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Grid item xs={false} sm={4}></Grid>
-            <Grid item xs={6} sm={4}>
-              <Box display="flex" alignItems="center" justifyContent="center">
-                <Typography>
-                  {loading ? (
-                    <Skeleton variant="rect" width={70} />
-                  ) : (
-                    <Link href="#" onClick={toggleCollapse}>
-                      { collapsed ? (<>Weniger</>) : (<>Weitere</>) }
-                    </Link>
-                  )}
-                </Typography>
-              </Box>
+          <Collapse in={showOptions}>
+            <Grid item xs={12}>
+              <PriceRangeFields />
             </Grid>
-            <Grid item xs={6} sm={4}>
-              <Box display="flex" alignItems="center" justifyContent="flex-end">
-                <Box>
-                  {loading ? (
-                    <Skeleton variant="circle" width={32} height={32} style={{ margin: '8px' }} />
-                  ) : (
-                    <ResetButton />
-                  )}
+          </Collapse>
+
+          <Grid item xs={12}>
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Grid item xs={false} sm={4}></Grid>
+              <Grid item xs={6} sm={4}>
+                <Box display="flex" alignItems="center" justifyContent="center">
+                  <IconButtonSkeleton loading={loading}>
+                    <CollapseButton
+                      state={showOptions ? State.Less : State.More}
+                      onToggle={toggleShowOptions}
+                    />
+                  </IconButtonSkeleton>
                 </Box>
-                <Box margin={1}>
-                  {loading ? (
-                    <Skeleton variant="circle" width={32} height={32} style={{ margin: '8px' }} />
-                  ) : (
-                    <ResetButton />
-                  )}
+              </Grid>
+              <Grid item xs={6} sm={4}>
+                <Box display="flex" alignItems="center" justifyContent="flex-end">
+                  <Box>
+                    <IconButtonSkeleton loading={loading}>
+                      <SaveButton />
+                    </IconButtonSkeleton>
+                  </Box>
+                  <Box margin={1}>
+                    <IconButtonSkeleton loading={loading}>
+                      <ResetButton />
+                    </IconButtonSkeleton>
+                  </Box>
                 </Box>
-              </Box>
+              </Grid>
             </Grid>
           </Grid>
-          <Collapse in={collapsed} unmountOnExit>
-            <Box>
-              <TextField
-                label="von"
-              />
-              <TextField
-                label="bis"
-              />
-            </Box>
-          </Collapse>
         </Grid>
-      </Grid>
-      <Button onClick={() => toggleLoading()}>x</Button>
+      </form>
     </>
   );
 };

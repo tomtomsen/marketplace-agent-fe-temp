@@ -1,3 +1,9 @@
+Todos:
+- animations
+- onLoaded fade effect
+- oncollapce rotate
+- click on collapse triggers error - upgrade material-ui:5-alpha?
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

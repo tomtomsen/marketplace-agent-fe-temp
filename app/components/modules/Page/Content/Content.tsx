@@ -6,7 +6,7 @@ type Properties = {
 
 const Content: React.FunctionComponent<Properties> = ({ children }) => (
   <>
-    <div data-testid="content">
+    <div data-testid="content" style={{ marginLeft: 20, marginRight: 20 }}>
       {children}
     </div>
   </>
